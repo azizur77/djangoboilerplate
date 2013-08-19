@@ -129,6 +129,8 @@ INSTALLED_APPS = (
 if not DEBUG:
     print "--PRODUCTION--"
     AWS_STORAGE_BUCKET_NAME = 'campusflames-store'
+    AWS_ACCESS_KEY_ID = 'AKIAIXRWO3BEX2FHJGDA'
+    AWS_SECRET_ACCESS_KEY = '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'
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
     STATIC_URL = S3_URL
