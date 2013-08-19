@@ -1,4 +1,3 @@
-# Django settings for djangoboilerplate project.
 import os
 
 DEBUG = False
@@ -10,20 +9,28 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['RDS_DB_NAME'],
-        'USER': os.environ['RDS_USERNAME'],
-        'PASSWORD': os.environ['RDS_PASSWORD'],
-        'HOST': os.environ['RDS_HOSTNAME'],
-        'PORT': os.environ['RDS_PORT'],
+if not DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'testdb',
+        }
+    }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.example.com']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -83,7 +90,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '^ua%svbdlo9$44+f!%_#*!l8(=j7=uyond7$2@50z(g1^tf%b)'
+SECRET_KEY = '<secret key>'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -127,10 +134,9 @@ INSTALLED_APPS = (
 
 
 if not DEBUG:
-    print "--PRODUCTION--"
-    AWS_STORAGE_BUCKET_NAME = 'campusflames-store'
-    AWS_ACCESS_KEY_ID = 'AKIAIXRWO3BEX2FHJGDA'
-    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_STORAGE_BUCKET_NAME = '<s3 bucket name>'
+    AWS_ACCESS_KEY_ID = '<access key id>'
+    AWS_SECRET_ACCESS_KEY = '<secret access key>'
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
     STATIC_URL = S3_URL
