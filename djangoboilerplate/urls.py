@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'djangoboilerplate.views.home', name='home'),
+    url(r'^$', 'djangoboilerplate.views.home', name='home'),
     # url(r'^djangoboilerplate/', include('djangoboilerplate.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
