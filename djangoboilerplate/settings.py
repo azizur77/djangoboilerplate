@@ -61,7 +61,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''#os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'static')
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'static')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -129,7 +129,8 @@ INSTALLED_APPS = (
 
 
 if not DEBUG:
-    AWS_STORAGE_BUCKET_NAME = 'elasticbeanstalk-us-east-1-560928905604'
+    print "PRODUCTION"
+    AWS_STORAGE_BUCKET_NAME = 'campusflames-store'
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
     STATIC_URL = S3_URL
