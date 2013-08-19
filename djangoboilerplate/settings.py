@@ -120,16 +120,14 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'storages',
-    # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
 
 
 if not DEBUG:
-    print "PRODUCTION"
+    print "--PRODUCTION--"
     AWS_STORAGE_BUCKET_NAME = 'campusflames-store'
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
